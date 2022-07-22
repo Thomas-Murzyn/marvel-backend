@@ -9,7 +9,7 @@ router.get("/home", async (req, res) => {
     console.log("route /home");
 
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?limit=100&apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}`
     );
 
     res.status(200).json(response.data);
