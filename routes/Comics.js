@@ -4,12 +4,12 @@ const router = express.Router();
 
 // Search all comics
 
-router.get("/comics", async (req, res) => {
+router.get("/comics/:skip", async (req, res) => {
   try {
     console.log("route /comics");
 
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?limit=28&skip=${req.params.skip}&apiKey=${process.env.API_KEY}`
     );
 
     res.status(200).json(response.data);
@@ -21,7 +21,7 @@ router.get("/comics", async (req, res) => {
 
 // Search a comic by id
 
-router.get("/comics/:id", async (req, res) => {
+router.get("/comics/id/:id", async (req, res) => {
   try {
     console.log("route /comics/:id");
 
@@ -38,12 +38,12 @@ router.get("/comics/:id", async (req, res) => {
 
 // Search a comic by name
 
-router.get("/comics/title/:title", async (req, res) => {
+router.get("/comics/title/:title/:skip", async (req, res) => {
   try {
     console.log("route /comics/title/:title");
 
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?title=${req.params.title}&apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?title=${req.params.title}&limit=28&skip=${req.params.skip}&apiKey=${process.env.API_KEY}`
     );
 
     res.status(200).json(response.data);
